@@ -1,9 +1,60 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>task</ion-title>
+    <ion-title class="center">¡Mi aplicación de tareas!</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle class="task-add-subtitle"
+        >Añadir tarea</ion-card-subtitle
+      >
+    </ion-card-header>
 
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Tarea a realizar....</ion-label>
+        <ion-textarea></ion-textarea>
+      </ion-item>
+
+      <ion-button class="ion-margin-top extra-padding-top-bottom" expand="full"
+        >Guardar</ion-button
+      >
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="tertiary">
+    <ion-card-header>
+      <ion-card-subtitle class="task-header">
+        <span>Task</span>
+        <span>02 Diciembre 2021 </span>
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-text>
+        <h4>
+          H5: The quick brown fox jumps over tdfdsfsdfsdfsdfsdfsdsfsdfsdfhe lazy
+          dog
+        </h4>
+      </ion-text>
+      <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+        <ion-fab-button color="light">
+          <ion-icon name="ellipsis-horizontal-sharp"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="start">
+          <ion-fab-button color="danger">
+            <ion-icon name="trash-sharp"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button color="dark">
+            <ion-icon name="create-sharp"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button color="success">
+            <ion-icon name="flash-sharp"></ion-icon>
+          </ion-fab-button>
+        </ion-fab-list>
+      </ion-fab>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
