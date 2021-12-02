@@ -7,20 +7,47 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-card-subtitle class="task-add-subtitle"
-        >Añadir tarea</ion-card-subtitle
-      >
+      <ion-card-subtitle class="task-add-subtitle">
+        Añadir tarea
+      </ion-card-subtitle>
     </ion-card-header>
 
     <ion-card-content>
-      <ion-item>
-        <ion-label position="floating">Tarea a realizar....</ion-label>
-        <ion-textarea></ion-textarea>
-      </ion-item>
+      <form [formGroup]="ngForm" (ngSubmit)="onSubmit()">
+        <span
+          [ngClass]="{'color-danger': descriptionLength >= 501}"
+          class="description-length"
+          >{{ descriptionLength }} / 500</span
+        >
+        <ion-item>
+          <ion-label position="floating">Tarea a realizar....</ion-label>
+          <ion-textarea formControlName="description"></ion-textarea>
+        </ion-item>
+        <div
+          *ngIf="description.invalid && (description.dirty || description.touched)"
+          class="alert"
+        >
+          <span
+            class="error ion-padding color-danger"
+            *ngIf="description.errors?.['required']"
+          >
+            La descripción es requerida.
+          </span>
+          <span
+            class="error ion-padding color-danger"
+            *ngIf="description.errors?.['maxLength']"
+          >
+            Has superado el máximo de caracteres
+          </span>
+        </div>
 
-      <ion-button class="ion-margin-top extra-padding-top-bottom" expand="full"
-        >Guardar</ion-button
-      >
+        <ion-button
+          type="submit"
+          class="ion-margin-top extra-padding-top-bottom"
+          expand="full"
+          >Guardar</ion-button
+        >
+      </form>
     </ion-card-content>
   </ion-card>
 
