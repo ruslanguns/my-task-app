@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-interface Task {
-  id?: string;
-  description: string;
-  createdAt: Date;
-}
+import { TaskService } from './task.service';
 
 @Component({
   selector: 'app-task',
@@ -14,9 +9,9 @@ interface Task {
 })
 export class TaskPage implements OnInit {
   ngForm: FormGroup;
-  tasks: Task[] = [];
+  tasks$ = this.taskService.getTasks();
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private taskService: TaskService) {
     this.ngForm = this.fb.group({
       description: [
         '',
@@ -42,7 +37,8 @@ export class TaskPage implements OnInit {
   onSubmit() {
     if (this.ngForm.valid) {
       const { description } = this.ngForm.value;
-      this.tasks.unshift({ id: '1', description, createdAt: new Date() });
+      // this.tasks.unshift({ id: '1', description, createdAt: new Date() });
+      console.log('Form submitted:', description);
     }
   }
 }
