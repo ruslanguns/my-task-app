@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ruslanbot-66a53": {
+      "hosting": {
+        "app": [
+          "ruslanbot-66a53"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ruslanbot-66a53"
+  }
+}
