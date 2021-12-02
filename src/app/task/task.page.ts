@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+interface Task {
+  id?: string;
+  description: string;
+  createdAt: Date;
+}
+
 @Component({
   selector: 'app-task',
   templateUrl: './task.page.html',
@@ -8,6 +14,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class TaskPage implements OnInit {
   ngForm: FormGroup;
+  tasks: Task[] = [];
 
   constructor(private fb: FormBuilder) {
     this.ngForm = this.fb.group({
@@ -34,9 +41,8 @@ export class TaskPage implements OnInit {
 
   onSubmit() {
     if (this.ngForm.valid) {
-      console.log(this.ngForm.value);
-    } else {
-      console.log('El formulario no es valido');
+      const { description } = this.ngForm.value;
+      this.tasks.unshift({ id: '1', description, createdAt: new Date() });
     }
   }
 }
