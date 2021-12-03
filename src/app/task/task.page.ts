@@ -72,6 +72,10 @@ export class TaskPage implements OnInit {
   setSelectedTask(task: Task) {
     this.selectedTask = task;
     this.ngForm.setValue({ description: task.description });
-    console.log(task);
+  }
+
+  unSelectTask() {
+    this.selectedTask = undefined;
+    this.ngForm.reset();
   }
 }

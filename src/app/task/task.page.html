@@ -45,8 +45,17 @@
           type="submit"
           class="ion-margin-top extra-padding-top-bottom"
           expand="full"
-          >Guardar</ion-button
+          >{{ !selectedTask ? 'Añadir' : 'Modificar'}} tarea</ion-button
         >
+        <ng-container *ngIf="!!selectedTask">
+          <ion-button
+            class="ion-margin-top extra-padding-top-bottom"
+            expand="full"
+            color="light"
+            (click)="unSelectTask()"
+            >Regresar</ion-button
+          >
+        </ng-container>
       </form>
     </ion-card-content>
   </ion-card>
