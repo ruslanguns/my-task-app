@@ -56,7 +56,7 @@
       <ion-card-header>
         <ion-card-subtitle class="task-header">
           <span>Task</span>
-          <span>{{ tarea.createdAt | date: 'd/M/yy, HH:mm' }}</span>
+          <span>{{ tarea.createdAt| date: 'd/M/yy, HH:mm' }}</span>
         </ion-card-subtitle>
       </ion-card-header>
 
@@ -69,7 +69,7 @@
             <ion-icon name="ellipsis-horizontal-sharp"></ion-icon>
           </ion-fab-button>
           <ion-fab-list side="start">
-            <ion-fab-button color="danger">
+            <ion-fab-button color="danger" (click)="onDelete(tarea.id)">
               <ion-icon name="trash-sharp"></ion-icon>
             </ion-fab-button>
             <ion-fab-button color="dark">

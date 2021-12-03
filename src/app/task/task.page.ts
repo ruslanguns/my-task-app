@@ -43,4 +43,9 @@ export class TaskPage implements OnInit {
       });
     }
   }
+
+  onDelete(id: string) {
+    console.log(id);
+    this.taskService.deleteTask(id);
+  }
 }
