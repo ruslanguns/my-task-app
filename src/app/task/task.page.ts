@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs/operators';
+import { Task } from './task.interface';
 import { TaskService } from './task.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { TaskService } from './task.service';
 })
 export class TaskPage implements OnInit {
   ngForm: FormGroup;
+  selectedTask: Task | undefined = undefined;
   tasks$ = this.taskService
     .getTasks()
     .pipe(map((tasks) => tasks.filter((x) => !x.completed)));
@@ -40,10 +42,21 @@ export class TaskPage implements OnInit {
   onSubmit() {
     if (this.ngForm.valid) {
       const { description } = this.ngForm.value;
-      this.taskService.createTask({
-        description,
-        createdAt: new Date().toISOString(),
-      });
+
+      if (this.selectedTask) {
+        // es para editar
+        this.taskService.updateTask(this.selectedTask.id, {
+          description,
+        });
+        this.selectedTask = undefined;
+      } else {
+        this.taskService.createTask({
+          description,
+          createdAt: new Date().toISOString(),
+        });
+      }
+
+      this.ngForm.reset();
     }
   }
 
@@ -54,5 +67,11 @@ export class TaskPage implements OnInit {
 
   onCompletedTask(id: string) {
     this.taskService.updateTask(id, { completed: true });
+  }
+
+  setSelectedTask(task: Task) {
+    this.selectedTask = task;
+    this.ngForm.setValue({ description: task.description });
+    console.log(task);
   }
 }

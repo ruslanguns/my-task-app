@@ -72,7 +72,7 @@
             <ion-fab-button color="danger" (click)="onDelete(tarea.id)">
               <ion-icon name="trash-sharp"></ion-icon>
             </ion-fab-button>
-            <ion-fab-button color="dark">
+            <ion-fab-button color="dark" (click)="setSelectedTask(tarea)">
               <ion-icon name="create-sharp"></ion-icon>
             </ion-fab-button>
             <ion-fab-button color="success" (click)="onCompletedTask(tarea.id)">
