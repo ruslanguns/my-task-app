@@ -27,7 +27,7 @@ export class TaskService {
 
   async createTask(task: Task) {
     return await this.collection
-      .add(task)
+      .add({ ...task, completed: false })
       .catch((error) => console.error(error));
   }
 

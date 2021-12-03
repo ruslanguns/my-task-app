@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { map } from 'rxjs/operators';
 import { TaskService } from './task.service';
 
 @Component({
@@ -9,7 +10,9 @@ import { TaskService } from './task.service';
 })
 export class TaskPage implements OnInit {
   ngForm: FormGroup;
-  tasks$ = this.taskService.getTasks();
+  tasks$ = this.taskService
+    .getTasks()
+    .pipe(map((tasks) => tasks.filter((x) => !x.completed)));
 
   constructor(private fb: FormBuilder, private taskService: TaskService) {
     this.ngForm = this.fb.group({
@@ -47,5 +50,9 @@ export class TaskPage implements OnInit {
   onDelete(id: string) {
     console.log(id);
     this.taskService.deleteTask(id);
+  }
+
+  onCompletedTask(id: string) {
+    this.taskService.updateTask(id, { completed: true });
   }
 }
