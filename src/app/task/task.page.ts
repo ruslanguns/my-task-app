@@ -37,8 +37,10 @@ export class TaskPage implements OnInit {
   onSubmit() {
     if (this.ngForm.valid) {
       const { description } = this.ngForm.value;
-      // this.tasks.unshift({ id: '1', description, createdAt: new Date() });
-      console.log('Form submitted:', description);
+      this.taskService.createTask({
+        description,
+        createdAt: new Date().toISOString(),
+      });
     }
   }
 }

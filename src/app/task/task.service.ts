@@ -8,12 +8,20 @@ import { Task } from './task.interface';
 export class TaskService {
   constructor(private firestore: AngularFirestore) {}
 
-  getTasks() {
-    return this.firestore.collection<Task>('tasks').valueChanges();
+  private get collection() {
+    return this.firestore.collection<Task>('tasks');
   }
 
-  getTask(id: string) {}
-  createTask(task: any) {}
+  getTasks() {
+    return this.collection.valueChanges();
+  }
+
+  async createTask(task: Task) {
+    return await this.collection
+      .add(task)
+      .catch((error) => console.error(error));
+  }
+
   updateTask(task: any) {}
   deleteTask(id: string) {}
 }
