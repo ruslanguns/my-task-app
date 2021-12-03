@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collectionData, collection } from '@angular/fire/firestore';
-import { Observable, of } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Task } from './task.interface';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class TaskService {
-  constructor(private firestore: Firestore) {}
-
-  get collection() {
-    return collection(this.firestore, 'tasks');
-  }
+  constructor(private firestore: AngularFirestore) {}
 
   getTasks() {
-    return collectionData(this.collection);
+    return this.firestore.collection<Task>('tasks').valueChanges();
   }
 
   getTask(id: string) {}

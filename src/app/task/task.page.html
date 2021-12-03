@@ -51,8 +51,8 @@
     </ion-card-content>
   </ion-card>
 
-  <ng-container *ngIf="tasks$ | async as tasks">
-    <ion-card class="task-item" color="tertiary" *ngFor="let task of tasks">
+  <ng-container *ngIf="tasks$ | async as tareas">
+    <ion-card class="task-item" color="tertiary" *ngFor="let tarea of tareas">
       <ion-card-header>
         <ion-card-subtitle class="task-header">
           <span>Task</span>
@@ -62,7 +62,7 @@
 
       <ion-card-content>
         <ion-text>
-          <h4>{{ task.description }}</h4>
+          <h4>{{ tarea.description }}</h4>
         </ion-text>
         <ion-fab horizontal="end" vertical="bottom" slot="fixed">
           <ion-fab-button color="light">
